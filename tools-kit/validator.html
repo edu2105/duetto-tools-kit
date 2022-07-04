@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="duetto tools, htng, htng validator, ota">
+    <meta name="description" content="This tool will compare any HTNG message type vs Duetto API.">
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/3e54838a37.js" crossorigin="anonymous"></script>
+    <title>HTNG Validator</title>
+</head>
+<body>
+    <div class="main-layout">
+        <header class="header">
+            <!-- Nav visible for Mobile -->
+            <div class="mobile-menu">
+                <input type="checkbox" id="mobile-menu-check">
+                <div class="mobile-menu-open-btn">
+                    <label for="mobile-menu-check">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+                <div class="mobile-menu-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../sections/how-it-works.html">How it works</a></li>
+                        <li class="mobile-sub-nav">
+                                <a href="../sections/tools.html">Tools&#9663;</a>
+                                <!-- Sub-Menu -->
+                                <ul class="mobile-sub-nav-content">
+                                    <li><a href="./validator.html">HTNG Validator</a></li>
+                                    <li><a href="./converter.html">XML To CSV</a></li>
+                                    <li><a href="./rate-sum.html">Rate Sum</a></li>
+                                </ul>
+                        </li>
+                        <li><a href="../sections/documentation.html">Documentation</a></li>
+                        <li><a href="../sections/feedback.html">Send feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Duetto Logo + Horizontal Navigation Bar  -->
+            <a href="../index.html"><img src="../images/duetto-logo-min.png" alt="Duetto Logo"></a>
+            <nav class="header-nav-bar">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sections/how-it-works.html">How it works</a></li>
+                    <li class="nav-item dropdown" id="item-selected">
+                        <a href="./tools.html" class="nav-link dropdown-toggle item-selected" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+                        <!-- Sub-Menu -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="../tools-kit/validator.html" class="dropdown-item">HTNG Validator</a></li>
+                            <li><a href="../tools-kit/converter.html" class="dropdown-item">XML To CSV</a></li>
+                            <li><a href="../tools-kit/rate-sum.html" class="dropdown-item">Rate Sum</a></li>
+                        </ul>                    
+                    </li>
+                    <li><a href="../sections/documentation.html">Documentation</a></li>
+                    <li><a href="../sections/feedback.html">Send feedback</a></li>
+                </ul>
+            </nav>
+            <!-- Placeholder to center Duetto Logo for mobile view -->
+            <div class="mobile-placeholder"></div>
+        </header>
+    
+        <main class="main">
+            <!-- Main Section -->
+            <div class="main-section-container">
+                <h1>HTNG Validator</h1>
+                <p>Check if your HTNG message type is according the HTNG Duetto implementation.</p>
+            </div>
+    
+            <!-- Secondary Sections  -->
+            <div class="sub-section-container">
+                <form class="form" action="#" method="POST">
+                    <label>
+                        <mark>Payload</mark>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" cols="80" rows="20"></textarea>
+                            <label for="floatingTextarea">Paste your HTNG message here...</label>
+                        </div>
+                    </label>
+                    <button type="button" class="btn btn-primary">Validate</button>
+                    <label class="validator-result">
+                        <span>Result</span>
+                        <br>
+                        <textarea name="result" cols="30" rows="5" placeholder="Result will be shown here..."></textarea>
+                    </label>
+                </form>
+            </div>
+        </main>
+    
+        <footer class="footer">
+            <!-- Footer horizontal navigation bar, includes social links -->
+            <nav class="footer-nav-bar animate__animated animate__fadeInUp">
+                <ul>
+                    <li><a href="https://duetto.slack.com/archives/CGHL8TTT6" target="_blank"><i class="fab fa-slack"> Slack</i></a></li>    
+                    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=productintegrations@duettoresearch.com" target="_blank"><i class="far fa-envelope"> Gmail</i></a></li>
+                    <li><a href="https://duettoresearch.atlassian.net/wiki/spaces/PM/overview" target="_blank"><i class="fab fa-confluence"> Confluence</i></a></li>
+                </ul>
+            </nav>
+        </footer>   
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

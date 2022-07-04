@@ -1,0 +1,78 @@
+.header{
+    grid-area: header;
+    background-image: linear-gradient(to right, $headerBackgroundColor1, $headerBackgroundColor2, $headerBackgroundColor3, $headerBackgroundColor4);
+    height: 100%;
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    .mobile-placeholder{
+        display: none;
+    };
+    .mobile-menu{
+        color: white;
+        font-size: $headerFontSize;
+        display: none;
+    };
+    img{
+        padding: .5rem;
+        max-width: 40vw;
+        max-height: 4vh;
+        box-sizing: content-box;
+    };
+    .header-nav-bar{
+        ul:not(.dropdown-menu){
+            margin: 0;
+            padding: 1rem;
+            width: 100%;
+            @include flex-row;
+            align-items: flex-start;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        };
+        li{
+            display: inline-block;
+            margin: 0 1rem 0 1rem;
+            .dropdown-item{
+                font-size: $headerFontSize;
+            };
+            a:not(.dropdown-item){
+                text-decoration: none;
+                color: $headerLiColor;
+                font-size: $headerFontSize;
+                &:not(.nav-link.dropdown-toggle)::after{
+                    content: "";
+                    display: block;
+                    height: 3px;
+                    width: 0;
+                    background: transparent;
+                    transition: transform 0.5s;
+                    transform: scaleX(0);
+                    transform-origin: center;
+                };
+                &:hover{
+                    color: $headerBackgroundColor1;
+                    transition: 0.4s ;
+                    &:not(.nav-link.dropdown-toggle)::after{
+                        width: 100%;
+                        transform: scaleX(1);
+                        background: $highlightColor;
+                    };
+                };
+            }
+        };
+        #item-selected{
+            color: $headerBackgroundColor1;
+            &>a{
+                color: $headerBackgroundColor1;
+            };
+            &::after{
+                content: "";
+                display: block;
+                height: 3px;
+                width: 100%;
+                background: $highlightColor;
+                transform: unset;
+            }
+        }
+    }
+}

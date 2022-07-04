@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="duetto tools, knowledge base, how it works">
+    <meta name="description" content="A detail description about how we made the tools including code snippets.">
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/3e54838a37.js" crossorigin="anonymous"></script>
+    <title>How it works</title>
+</head>
+<body>
+    <div class="main-layout">
+        <header class="header">
+            <!-- Nav visible for Mobile -->
+            <div class="mobile-menu">
+                <input type="checkbox" id="mobile-menu-check">
+                <div class="mobile-menu-open-btn">
+                    <label for="mobile-menu-check">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+                <div class="mobile-menu-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="./how-it-works.html">How it works</a></li>
+                        <li class="mobile-sub-nav">
+                                <a href="./tools.html">Tools&#9663;</a>
+                                <!-- Sub-Menu -->
+                                <ul class="mobile-sub-nav-content">
+                                    <li><a href="../tools-kit/validator.html">HTNG Validator</a></li>
+                                    <li><a href="../tools-kit/converter.html">XML To CSV</a></li>
+                                    <li><a href="../tools-kit/rate-sum.html">Rate Sum</a></li>
+                                </ul>
+                        </li>
+                        <li><a href="./documentation.html">Documentation</a></li>
+                        <li><a href="./feedback.html">Send feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Duetto Logo + Horizontal Navigation Bar  -->
+            <a href="../index.html"><img src="../images/duetto-logo-min.png" alt="Duetto Logo"></a>
+            <nav class="header-nav-bar">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a id="item-selected" href="#">How it works</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="./tools.html" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+                        <!-- Sub-Menu -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="../tools-kit/validator.html" class="dropdown-item">HTNG Validator</a></li>
+                            <li><a href="../tools-kit/converter.html" class="dropdown-item">XML To CSV</a></li>
+                            <li><a href="../tools-kit/rate-sum.html" class="dropdown-item">Rate Sum</a></li>
+                        </ul>                    
+                    </li>
+                    <li><a href="./documentation.html">Documentation</a></li>
+                    <li><a href="./feedback.html">Send feedback</a></li>
+                </ul>
+            </nav>
+            <!-- Placeholder to center Duetto Logo for mobile view -->
+            <div class="mobile-placeholder"></div>
+        </header>
+    
+        <main class="main">
+            <!-- Main Section -->
+            <div class="main-section-container">
+                <h1>&#129299;Let's see how the team made this tools</h1>
+                <p>All the available tools are made as lambda functions with Api Gateway from AWS.</p>
+            </div>
+    
+            <!-- Secondary Sections  -->
+            <div class="sub-section-container">
+                <section>
+                    <h2>Technology used</h2>
+                    <div class="list-group">
+                        <a href="https://www.python.org/downloads/release/python-390/" class="list-group-item list-group-item-action" aria-current="true" target="_blank">
+                            Python 3.9
+                        </a>
+                        <a href="https://aws.amazon.com/lambda/" class="list-group-item list-group-item-action" target="_blank">AWS Lambda</a>
+                        <a href="https://aws.amazon.com/api-gateway/" class="list-group-item list-group-item-action" target="_blank">AWS API Gateway</a>
+                        <a href="https://www.nginx.com/" class="list-group-item list-group-item-action" target="_blank">Nginx</a>
+                      </div>
+                    <br>
+                </section>
+            </div>
+    
+            <div class="sub-section-container">
+                <div>
+                    <h2>Find below the current code used</h2>
+                    <h3>HTNG Validator</h3>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          Code Snippet Min
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <code>
+                            import xmlschema
+    import json
+    from xmlschema import XMLSchemaValidationError 
+    import xml.etree.ElementTree as ET
+    
+    ota_types = {
+            "OTA_HotelResNotifRQ": "./schemas/main/mainHtngSchema_reservations.xsd",
+            "OTA_HotelInvBlockNotifRQ": "./schemas/main/mainHtngSchema_blocks.xsd",
+            "OTA_HotelInvCountNotifRQ": "./schemas/main/mainHtngSchema_inventory.xsd",
+            "OTA_HotelRatePlanNotifRQ": "./schemas/main/mainHtngSchema_rates.xsd",
+            "OTA_HotelStayInfoNotifRQ": "./schemas/main/mainHtngSchema_folios.xsd",
+            "OTA_HotelStatsNotifRQ": "./schemas/main/mainHtngSchema_stats.xsd"
+        }
+    
+    
+    def lambda_handler (event, context):
+        xml_data = ET.fromstring(event["body"])
+        ota_type = xml_data[1][0]
+        ota_type = ota_type.tag.split("}")[1]
+        ota_invalid = 0
+    
+        for key in ota_types.keys():
+            if ota_type != key:
+                ota_invalid += 1
+    
+        if ota_invalid == 6:
+            body = {
+                    "Status": "Failed", 
+                    "Message": "OTA Element error",
+                    "Reason": "Invalid OTA element received: " + ota_type + 
+                    ". Please use any of the following values: " + ", ".join(list(ota_types.keys()))  
+                } 
+            return response_wrapper(body,400)
+    
+        try:
+            my_schema = xmlschema.XMLSchema(ota_types[ota_type])
+            my_schema.validate(xml_data)
+            body = {
+                    "Status": "Success", 
+                    "Message": "XML payload matches with Duetto " + ota_type + " XSD"  
+            }
+            return response_wrapper(body,200)
+        
+        except XMLSchemaValidationError as xmle:
+            body = {
+                    "Status": "Failed", 
+                    "Message": xmle.message,
+                    "Reason": xmle.reason, 
+                    "Path": xmle.path   
+            }
+            return response_wrapper(body, 400)
+            
+        except Exception as e:
+            body = {
+                    "Message": "Internal Server Error"
+            }
+            return response_wrapper(body, 500)
+            
+            
+    def response_wrapper(body,statusCode):
+        return {
+            "isBase64Encoded": False,
+            "headers": {"Access-Control-Allow-Origin": "*"},
+            "statusCode": statusCode,
+            "body": json.dumps(body)
+        }
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <footer class="footer">
+            <!-- Footer horizontal navigation bar, includes social links -->
+            <nav class="footer-nav-bar animate__animated animate__fadeInUp">
+                <ul>
+                    <li><a href="https://duetto.slack.com/archives/CGHL8TTT6" target="_blank"><i class="fab fa-slack"> Slack</i></a></li>    
+                    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=productintegrations@duettoresearch.com" target="_blank"><i class="far fa-envelope"> Gmail</i></a></li>
+                    <li><a href="https://duettoresearch.atlassian.net/wiki/spaces/PM/overview" target="_blank"><i class="fab fa-confluence"> Confluence</i></a></li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

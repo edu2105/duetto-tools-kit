@@ -1,0 +1,15 @@
+.main{
+    &.feedback{
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://app-demo.duettoresearch.com/assets/insecure/img/loginDusseldorfGermany1.jpg?v=2407631");
+        background-size: cover;
+        width: 100%;
+        height: auto;
+        p{
+            color: white;
+            font-size: $mainFontSize;
+        };
+        h1{
+            color: $headerBackgroundColor4;
+        }
+    };
+}

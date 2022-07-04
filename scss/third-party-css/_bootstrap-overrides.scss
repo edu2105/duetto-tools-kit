@@ -1,0 +1,61 @@
+.list-group{
+    --bs-list-group-action-hover-color: white;
+    --bs-list-group-action-hover-bg: #44ADE2;
+    width: fit-content;
+}
+
+
+.header{
+    .header-nav-bar{
+        .dropdown-menu{
+            background-color: $headerBackgroundColor3;
+            color: white;
+            li{
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+                a{
+                    color: unset;
+                    padding-left: 1rem;
+                    padding-right: 0;
+                    width: 100%;
+                    &:hover{
+                        color: $headerBackgroundColor2;
+                    };
+                };
+            };
+        };
+    };
+};
+
+.fieldset .btn.btn-primary,
+.form .btn.btn-primary{
+    border-radius: 9px;
+    width: fit-content;
+    margin: 1rem 0 1rem 1rem;
+}
+
+.form .btn.btn-primary.rate-sum{
+    margin-left: 0;
+}
+
+#floatingTextarea{
+    height: unset;
+}
+
+.form-control{
+    width: auto;
+}
+
+#formFile{
+    margin: 0;
+    max-width: 100%;
+}
+
+.main{
+    .sub-section-container{
+        .card{
+            max-width: 80%;
+        }
+    }
+}

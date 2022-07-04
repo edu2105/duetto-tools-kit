@@ -1,0 +1,24 @@
+.main-layout{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 6vh 12fr 1fr;
+    height: 100%;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer"
+    ;
+}
+
+#about-us-video{
+    object-fit: cover;
+}
+
+#collapsible{
+    &:checked{
+        &~.htng-code{
+            visibility: visible;
+            display: block;
+        }
+    }   
+}

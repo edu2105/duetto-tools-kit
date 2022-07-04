@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="duetto, duetto tools, rms, open pricing">
+    <meta name="description" content="Tools desgined to provide Duetto's team different solutions for the daily work.">
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="./images/favicon.ico">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/3e54838a37.js" crossorigin="anonymous"></script>
+    <title>Duetto Tools Kit</title>
+</head>
+<body>
+    <div class="main-layout index">
+        <header class="header">
+            <!-- Nav visible for Mobile -->
+            <div class="mobile-menu">
+                <input type="checkbox" id="mobile-menu-check">
+                <div class="mobile-menu-open-btn">
+                    <label for="mobile-menu-check">
+                        <i class="fas fa-bars animate__animated animate__backInRight"></i>
+                    </label>
+                </div>
+                <div class="mobile-menu-nav">
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./sections/how-it-works.html">How it works</a></li>
+                        <li class="mobile-sub-nav">
+                                <a href="./sections/tools.html">Tools&#9663;</a>
+                                <!-- Sub-Menu -->
+                                <ul class="mobile-sub-nav-content">
+                                    <li><a href="./tools-kit/validator.html">HTNG Validator</a></li>
+                                    <li><a href="./tools-kit/converter.html">XML To CSV</a></li>
+                                    <li><a href="./tools-kit/rate-sum.html">Rate Sum</a></li>
+                                </ul>
+                        </li>
+                        <li><a href="./sections/documentation.html">Documentation</a></li>
+                        <li><a href="./sections/feedback.html">Send feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Duetto Logo + Horizontal Navigation Bar  -->
+            <a href="./index.html"><img class="animate__animated animate__backInLeft" src="./images/duetto-logo-min.png" alt="Duetto Logo"></a>
+            <nav class="header-nav-bar">
+                <ul class="animate__animated animate__backInRight">
+                    <li><a id="item-selected" href="#">Home</a></li>
+                    <li><a href="./sections/how-it-works.html">How it works</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="./tools.html" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+                        <!-- Sub-Menu -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="../tools-kit/validator.html" class="dropdown-item">HTNG Validator</a></li>
+                            <li><a href="../tools-kit/converter.html" class="dropdown-item">XML To CSV</a></li>
+                            <li><a href="../tools-kit/rate-sum.html" class="dropdown-item">Rate Sum</a></li>
+                        </ul>                    
+                    </li>
+                    <li><a href="./sections/documentation.html">Documentation</a></li>
+                    <li><a href="./sections/feedback.html">Send feedback</a></li>
+                </ul>
+            </nav>
+            <!-- Placeholder to center Duetto Logo for mobile view -->
+            <div class="mobile-placeholder"></div>
+        </header>
+        
+        <main class="main index">
+            <div class="start-section">
+                <!-- Main Section -->
+                <div class="main-section-container index">
+                    <h1>&#129520; Welcome to Duetto Tools Kit</h1>
+                    <p>This site was designed by the Integrations team in order to provide you different solutions for your daily work.</p>
+                </div>
+                
+                <!-- Secondary Sections  -->
+                <div class="sub-section-container index">
+                    <section class="section">
+                        <h2><mark>Security</mark></h2>
+                        <img src="./images/hacker.jpg" alt="Hacker Picture">
+                    </section>
+                    <aside class="aside">
+                        <p>Security is an important asset for any company. Since Duetto works essentially with third-party data, this aspect becomes more important. So for the time you need to inspect, convert o manipulate some data, instead of using a public website which you don't know what they are doing with the information, best use the <span class="bold"><a href="./sections/tools.html">Duetto Tools Kit</a></span>, and if you cannot find here what you need, then let us know <span class="bold"><a href="./sections/feedback.html">here</a></span> and suggest a new tool so we can add it.</p>
+                    </aside>
+                </div>
+        
+                <div class="sub-section-container index">
+                    <section class="section">
+                        <h2><mark>Reliability</mark></h2>
+                        <img src="./images/duetto-reliability-min.jpg" alt="Duetto Reliability Picture">
+                    </section>
+                    <aside class="aside">
+                        <p>Using an internal company site makes the data manipulation more secure and also can be collaborative since new tools for different departments can be added, no matter the difficulty.</p>
+                    </aside>
+                </div>
+            </div>
+    
+            <div class="tools-section">
+                <div class="cards-title">
+                    <h2><mark>Available Tools</mark></h2>
+                </div>
+                <div class="cards-container">
+                    <div class="card-custom animate__animated animate__zoomIn">
+                        <div class="card-img">
+                            <a href="./tools-kit/validator.html"><img src="./images/ahla-htng-min.png" alt="HTNG Logo"></a>
+                        </div>
+                        <div class="card-content">
+                            <h3>HTNG Validator</h3>
+                            <p>A tool to compare any HTNG message type vs Duetto API.</p>
+                        </div>
+                        <a href="./tools-kit/validator.html"><button>Try Out</button></a>
+                    </div>
+        
+                    <div class="card-custom animate__animated animate__zoomIn">
+                        <div class="card-img">
+                            <a href="./tools-kit/converter.html"><img src="./images/xmlToCsv-min.png" alt="XML To CSV Logo"></a>
+                        </div>
+                        <div class="card-content">
+                            <h3>Converter</h3>
+                            <p>Will let you transform an XML payload to a CSV file that you can copy or download.</p>
+                        </div>
+                        <a href="./tools-kit/converter.html"><button>Try Out</button></a>
+                    </div>
+        
+                    <div class="card-custom animate__animated animate__zoomIn">
+                        <div class="card-img">
+                            <a href="./tools-kit/rate-sum.html"><img src="./images/calculation-min.png" alt="XML To CSV Logo"></a>
+                        </div>
+                        <div class="card-content">
+                            <h3>Rate Sum</h3>
+                            <p>Will make the rate calculation for you. You just need to upload any booking stay-day file.</p>
+                        </div>
+                        <a href="./tools-kit/rate-sum.html"><button>Try Out</button></a>
+                    </div>
+
+                    <div class="card-custom coming-soon animate__animated animate__zoomIn">
+                        <div class="card-img">
+                           <img alt="Compset Automation">
+                        </div>
+                        <div class="card-content">
+                            <h3>Comp Set Automation</h3>
+                            <p>A friendly UI to set the competitors for a Hotel.</p>
+                        </div>
+                        <button>N/A</button>
+                    </div>
+
+                    <div class="card-custom coming-soon animate__animated animate__zoomIn">
+                        <div class="card-img">
+                           <img alt="Partner Certification">
+                        </div>
+                        <div class="card-content">
+                            <h3>Partner Certification</h3>
+                            <p>Partners will be able to certificate an integration through our new automated process.</p>
+                        </div>
+                        <button>N/A</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-container">
+                <video autoplay muted loop width="100%" height="100%" id="about-us-video">
+                    <source src="https://www.duettocloud.com/hubfs/Duetto_HPVideo_Reduced1080.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+                <div class="video-content">
+                    <h2><mark>About Integrations</mark></h2>
+                    <div class="video-content-detail">
+                        <h2>The Mission &#128640;</h2>
+                        <p>Enhance our product by continuous delivery improvement, listening to our, customers and having the courage to explore and apply new technologies that takes us to the next level.</p>
+                        <h2>Our Goals &#127937;</h2>
+                        <ul class="goals">
+                            <li><i class="fa-solid fa-circle-check"></i>Reduce time to money</li>
+                            <li><i class="fa-solid fa-circle-check"></i>New market opportunities</li>
+                            <li><i class="fa-solid fa-circle-check"></i>Improve customer experience</li>
+                            <li><i class="fa-solid fa-circle-check"></i>Explore new verticals</li>
+                        </ul>
+                        <h2>Team We Work With &#128119;</h2>
+                        <ul>
+                            <li>Engineering</li>
+                            <li>Sales</li>
+                            <li>Customer Success</li>
+                            <li>Support</li>
+                            <li>DevOps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer index">
+                <!-- Footer horizontal navigation bar, includes social links -->
+                <nav class="footer-nav-bar">
+                    <ul>
+                        <li><a href="https://duetto.slack.com/archives/CGHL8TTT6" target="_blank"><i class="fab fa-slack"> Slack</i></a></li>    
+                        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=productintegrations@duettoresearch.com" target="_blank"><i class="far fa-envelope"> Gmail</i></a></li>
+                        <li><a href="https://duettoresearch.atlassian.net/wiki/spaces/PM/overview" target="_blank"><i class="fab fa-confluence"> Confluence</i></a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
