@@ -317,6 +317,7 @@
                 pointer-events: none;
                 left: .1rem;
                 background: transparent;
+                margin: 1rem;
                 transition: 0.2s ease all;
                 &.feedback{
                     top: 2.7rem;
@@ -357,9 +358,6 @@
             font-size: $mainFontSize;
             margin: 0;
         };
-        label{
-            margin: 1rem;
-        };
         .subscription{
             @include flex-row;
             justify-content: flex-start;
@@ -376,13 +374,14 @@
         }
     };
     input, select, textarea{
-        margin-top: .6rem;
+        margin: .6rem 0;
         color: $headerBackgroundColor2;
         border: 2px solid;
         padding: .3rem .6rem;
         border-radius: .5rem;
         box-sizing: border-box;
         resize: none;
+        width: fit-content;
     };
     input[type="submit"]{
         margin: 1rem 0 1rem 1rem;
@@ -418,6 +417,9 @@
         p{
             color: white;
         };
+        label{
+            margin-left: 1rem;
+        }
         input[type="submit"]{
             transition-duration: all 0.4s linear; 
             background-color: rgba(255, 255, 255, 0.1);

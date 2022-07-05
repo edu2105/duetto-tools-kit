@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="duetto tools, rate sum, rates, xml to csv, converter, htng, htng validator, ota">
-    <meta name="description" content="All our supported tools up to day.">
+    <meta name="keywords" content="duetto tools, rate sum, rates">
+    <meta name="description" content="This tool wll make the rate calculation for you. You just need to upload any booking stay-day file.">
     <!-- Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- Animate CSS -->
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/3e54838a37.js" crossorigin="anonymous"></script>
-    <title>Tools</title>
+    <title>Mews Tools</title>
 </head>
 <body>
     <div class="main-layout">
@@ -30,19 +30,19 @@
                 <div class="mobile-menu-nav">
                     <ul>
                         <li><a href="../index.html">Home</a></li>
-                        <li><a href="./how-it-works.html">How it works</a></li>
+                        <li><a href="../sections/how-it-works.html">How it works</a></li>
                         <li class="mobile-sub-nav">
-                                <a href="./tools.html">Tools&#9663;</a>
+                                <a href="../sections/tools.html">Tools&#9663;</a>
                                 <!-- Sub-Menu -->
                                 <ul class="mobile-sub-nav-content">
-                                    <li><a href="../tools-kit/validator.html">HTNG Validator</a></li>
-                                    <li><a href="../tools-kit/converter.html">XML To CSV</a></li>
-                                    <li><a href="../tools-kit/rate-sum.html">Rate Sum</a></li>
-                                    <li><a href="../tools-kit/mews.html">Mews</a></li>
+                                    <li><a href="./validator.html">HTNG Validator</a></li>
+                                    <li><a href="./converter.html">XML To CSV</a></li>
+                                    <li><a href="./rate-sum.html">Rate Sum</a></li>
+                                    <li><a href="./tools-kit/mews.html">Mews</a></li>
                                 </ul>
                         </li>
-                        <li><a href="./documentation.html">Documentation</a></li>
-                        <li><a href="./feedback.html">Send feedback</a></li>
+                        <li><a href="../sections/documentation.html">Documentation</a></li>
+                        <li><a href="../sections/feedback.html">Send feedback</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,8 +51,8 @@
             <nav class="header-nav-bar">
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <li><a href="./how-it-works.html">How it works</a></li>
-                    <li class="nav-item dropdown">
+                    <li><a href="../sections/how-it-works.html">How it works</a></li>
+                    <li class="nav-item dropdown" id="item-selected">
                         <a href="./tools.html" class="nav-link dropdown-toggle item-selected" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
                         <!-- Sub-Menu -->
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -62,56 +62,45 @@
                             <li><a href="../tools-kit/mews.html" class="dropdown-item">Mews</a></li>
                         </ul>                    
                     </li>
-                    <li><a href="./documentation.html">Documentation</a></li>
-                    <li><a href="./feedback.html">Send feedback</a></li>
+                    <li><a href="../sections/documentation.html">Documentation</a></li>
+                    <li><a href="../sections/feedback.html">Send feedback</a></li>
                 </ul>
             </nav>
             <!-- Placeholder to center Duetto Logo for mobile view -->
             <div class="mobile-placeholder"></div>
         </header>
-        
+    
         <main class="main">
             <!-- Main Section -->
             <div class="main-section-container">
-                <h1>&#129488;Let's go through the current supported tools</h1>
+                <h1>Reservations Workaround</h1>
+                <p>Select a date range, an interval in minutes, complete the additional information required and trigger the process.</p>
+                <p>This tool will call MEWS API as many times indicated and will wait for an Integration Job to poll the data.</p>
             </div>
-    
-            <!-- Secondary Sections  -->
-            <div class="sub-section-container tools">
-                <div class="card">
-                    <div class="card-header">
-                        Duetto API
+
+            <div class="sub-section-container">
+                <div class="workaround-container">
+                    <div class="workaround-form">
+                        <form action="#" method="POST" class="form" id="mews-form">
+                            <label for="mews-start-utc"><mark>Start Utc</mark></label>
+                            <input type="datetime-local" name="start-date" id="mews-start-utc" required>
+                            <label for="mews-end-utc"><mark>End Utc</mark></label>
+                            <input type="datetime-local" name="end-date" id="mews-end-utc" required>
+                            <label for="mews-interval"><mark>Interval (Min)</mark></label>
+                            <input type="number" min="1" name="interval" id="mews-interval" required>
+                            <label for="mews-access-token"><mark>Access Token</mark></label>
+                            <input type="text" name="access-token" id="mews-access-token" required>
+                            <label for="mews-service-id"><mark>Service Id</mark></label>
+                            <input type="text" name="service-id" id="mews-service-id" required>
+                            <input type="submit" value="Trigger">
+                        </form>
                     </div>
-                    <div class="card-body">
-                      <h5 class="card-title">HTNG Validator</h5>
-                      <p class="card-text">The HTNG Validator is a tool that will compare any HTNG message type (such as Reservations, Inventory, Blocks, etc) agains an schema based on Duetto HTNG implementation.</p>
-                      <a href="../tools-kit/validator.html" class="btn btn-primary">Use it</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="sub-section-container tools">
-                <div class="card">
-                    <div class="card-header">
-                        Online Tool
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">XML To CSV</h5>
-                      <p class="card-text">Instead of using public websites with production or sensitive data, better use a private website where you feel comfortable and secure. This tool will let you convert an XML payload with 1 nested level to a CSV file format that you can download.</p>
-                      <a href="../tools-kit/converter.html" class="btn btn-primary">Use it</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="sub-section-container tools">
-                <div class="card">
-                    <div class="card-header">
-                        Online Tool
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Rate Sum</h5>
-                      <p class="card-text">When checking an specific booking day, you may want to quickly calculate the rate sum total. This tool will allow you to upload a tsv file and will calculate the rate total automatically.</p>
-                      <a href="../tools-kit/rate-sum.html" class="btn btn-primary">Use it</a>
+                    <div class="workaround-logs">
+                        <div class="logs-container">
+                            <label for="mews-log-content"><mark>Logs</mark></label>
+                            <textarea name="logs-content" id="mews-logs-content" cols="120" rows="10" readonly></textarea>
+                            <button id="refresh-logs-btn">Refresh</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,9 +115,10 @@
                     <li><a href="https://duettoresearch.atlassian.net/wiki/spaces/PM/overview" target="_blank"><i class="fab fa-confluence"> Confluence</i></a></li>
                 </ul>
             </nav>
-        </footer>
+        </footer> 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="../js/mews.js"></script>
 </body>
 </html>

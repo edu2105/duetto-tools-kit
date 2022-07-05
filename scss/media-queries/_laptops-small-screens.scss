@@ -13,7 +13,13 @@
         .video-container{
             .video-content{
                 max-width: 75%;
-            }
-        }
+            };
+        };
+        .workaround-container{
+            @include flex-column;
+            .workaround-logs{
+                margin-top: 3rem;
+            };
+        };
     }
 }
