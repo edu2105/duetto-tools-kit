@@ -97,9 +97,13 @@
                     </div>
                     <div class="workaround-logs">
                         <div class="logs-container">
-                            <label for="mews-log-content"><mark>Logs</mark></label>
+                            <label for="mews-log-content" class="logs-title">Logs</label>
+                            <div class="logs-label">
+                                <label for="mews-log-id"><mark>Session Id</mark></label>
+                                <input type="text" name="log-id" id="mews-log-id" class="session-id-input">
+                            </div>
                             <textarea name="logs-content" id="mews-logs-content" cols="120" rows="10" readonly></textarea>
-                            <button id="refresh-logs-btn">Refresh</button>
+                            <button id="refresh-logs-btn">Get Logs</button>
                         </div>
                     </div>
                 </div>

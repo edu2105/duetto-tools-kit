@@ -606,7 +606,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  position: relative; }
 
 .main .workaround-form label,
 .main .workaround-logs label {
@@ -653,7 +654,13 @@ body {
 .main .workaround-logs .logs-container {
   display: flex;
   flex-direction: column;
-  margin-left: 5rem; }
+  margin-left: 4rem; }
+  .main .workaround-logs .logs-container .logs-title {
+    align-self: center;
+    margin-top: 0;
+    font-size: 2rem; }
+  .main .workaround-logs .logs-container .session-id-input {
+    margin-left: 1rem; }
   .main .workaround-logs .logs-container textarea {
     resize: both;
     color: black;
