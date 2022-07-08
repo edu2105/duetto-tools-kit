@@ -2,8 +2,8 @@ var form = document.getElementById("mews-form");
 var logs_textarea = document.getElementById("mews-logs-content");
 var refresh_logs = document.getElementById("refresh-logs-btn");
 var seession_id_input = document.getElementById("mews-log-id");
-var get_reservations = "http://localhost:8081/mews-workaround?";
-var get_logs = "http://localhost:8081/mews-workaround-logs?";
+var get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround?";
+var get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
 var session_id = "";
 var process_finished = false;
 
