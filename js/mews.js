@@ -6,6 +6,7 @@ var get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround?";
 var get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
 var session_id = "";
 var process_finished = false;
+var refresh_content_delayms = 50
 
 
 function checkProcessFinished(){
@@ -32,7 +33,9 @@ function getLogs(sessionId){
         if(response.match('Process Finished') == "Process Finished")
             process_finished = true;
         logs_textarea.value = "";
-        logs_textarea.value = response;
+        setTimeout(function() {
+            logs_textarea.value = response;
+        }, refresh_content_delayms);
     });
 };
 
@@ -44,6 +47,15 @@ form.addEventListener("submit", function(e){
     var interval = document.getElementById("mews-interval").value;
     var access_token = document.getElementById("mews-access-token").value;
     var service_id = document.getElementById("mews-service-id").value;
+
+    var date_start = new Date(start_utc);
+    var date_end = new Date(end_utc);
+    console.log("Start UTC: " + date_start);
+    console.log("End UTC: " + date_end);
+
+    if(date_start >= date_end){
+        return alert("End Date can not be greater or equal than Start Date");
+    };
 
     var request_options = {
         method: "GET"
