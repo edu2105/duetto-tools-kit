@@ -1,0 +1,22 @@
+.main{
+    .sub-section-container{
+        &.tools{
+            @include flex-column;
+            margin: 0 3rem;
+            .card{
+                margin: 1rem 0;
+                width: 70%;
+                .card-header{
+                    color: white;
+                    background-color: $headerBackgroundColor3;
+                };
+                .card-body{
+                    a{
+                        @include button-std;
+                        margin-bottom: 0;
+                    }
+                };
+            };
+        };
+    };
+}

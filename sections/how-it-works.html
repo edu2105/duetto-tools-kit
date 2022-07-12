@@ -74,7 +74,8 @@
             <!-- Main Section -->
             <div class="main-section-container">
                 <h1>&#129299;Let's see how the team made this tools</h1>
-                <p>All the available tools are made as lambda functions with Api Gateway from AWS.</p>
+                <p>Most of the available tools are made with Apache NiFi open source framework.</p>
+                <p>The HTNG Validator was made also using AWS Lambda with API Gateway.</p>
             </div>
     
             <!-- Secondary Sections  -->
@@ -82,97 +83,93 @@
                 <section>
                     <h2>Technology used</h2>
                     <div class="list-group">
-                        <a href="https://www.python.org/downloads/release/python-390/" class="list-group-item list-group-item-action" aria-current="true" target="_blank">
-                            Python 3.9
-                        </a>
-                        <a href="https://aws.amazon.com/lambda/" class="list-group-item list-group-item-action" target="_blank">AWS Lambda</a>
-                        <a href="https://aws.amazon.com/api-gateway/" class="list-group-item list-group-item-action" target="_blank">AWS API Gateway</a>
-                        <a href="https://www.nginx.com/" class="list-group-item list-group-item-action" target="_blank">Nginx</a>
+                        <a href="https://www.python.org/downloads/release/python-390/" class="list-group-item list-group-item-action" aria-current="true" target="_blank"><i class="fa-brands fa-python"></i>Python 3.9</a>
+                        <a href="https://aws.amazon.com/lambda/" class="list-group-item list-group-item-action" target="_blank"><i class="fa-brands fa-aws"></i>AWS Lambda</a>
+                        <a href="https://aws.amazon.com/api-gateway/" class="list-group-item list-group-item-action" target="_blank"><i class="fa-brands fa-aws"></i>AWS API Gateway</a>
+                        <a href="https://nifi.apache.org/" class="list-group-item list-group-item-action" target="_blank"><i class="fa-solid fa-square-nfi"></i>NiFi</a>
                       </div>
                     <br>
                 </section>
             </div>
     
             <div class="sub-section-container">
-                <div>
-                    <h2>Find below the current code used</h2>
-                    <h3>HTNG Validator</h3>
-                    <p>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                          Code Snippet Min
-                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <code>
-                            import xmlschema
-    import json
-    from xmlschema import XMLSchemaValidationError 
-    import xml.etree.ElementTree as ET
-    
-    ota_types = {
-            "OTA_HotelResNotifRQ": "./schemas/main/mainHtngSchema_reservations.xsd",
-            "OTA_HotelInvBlockNotifRQ": "./schemas/main/mainHtngSchema_blocks.xsd",
-            "OTA_HotelInvCountNotifRQ": "./schemas/main/mainHtngSchema_inventory.xsd",
-            "OTA_HotelRatePlanNotifRQ": "./schemas/main/mainHtngSchema_rates.xsd",
-            "OTA_HotelStayInfoNotifRQ": "./schemas/main/mainHtngSchema_folios.xsd",
-            "OTA_HotelStatsNotifRQ": "./schemas/main/mainHtngSchema_stats.xsd"
+                <h2>Code and Flow details</h2>
+                <h3>HTNG Validator</h3>
+                <p>
+                    <button class="button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Click for Code
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <code>
+                        import xmlschema
+import json
+from xmlschema import XMLSchemaValidationError 
+import xml.etree.ElementTree as ET
+
+ota_types = {
+        "OTA_HotelResNotifRQ": "./schemas/main/mainHtngSchema_reservations.xsd",
+        "OTA_HotelInvBlockNotifRQ": "./schemas/main/mainHtngSchema_blocks.xsd",
+        "OTA_HotelInvCountNotifRQ": "./schemas/main/mainHtngSchema_inventory.xsd",
+        "OTA_HotelRatePlanNotifRQ": "./schemas/main/mainHtngSchema_rates.xsd",
+        "OTA_HotelStayInfoNotifRQ": "./schemas/main/mainHtngSchema_folios.xsd",
+        "OTA_HotelStatsNotifRQ": "./schemas/main/mainHtngSchema_stats.xsd"
+    }
+
+
+def lambda_handler (event, context):
+    xml_data = ET.fromstring(event["body"])
+    ota_type = xml_data[1][0]
+    ota_type = ota_type.tag.split("}")[1]
+    ota_invalid = 0
+
+    for key in ota_types.keys():
+        if ota_type != key:
+            ota_invalid += 1
+
+    if ota_invalid == 6:
+        body = {
+                "Status": "Failed", 
+                "Message": "OTA Element error",
+                "Reason": "Invalid OTA element received: " + ota_type + 
+                ". Please use any of the following values: " + ", ".join(list(ota_types.keys()))  
+            } 
+        return response_wrapper(body,400)
+
+    try:
+        my_schema = xmlschema.XMLSchema(ota_types[ota_type])
+        my_schema.validate(xml_data)
+        body = {
+                "Status": "Success", 
+                "Message": "XML payload matches with Duetto " + ota_type + " XSD"  
         }
+        return response_wrapper(body,200)
     
-    
-    def lambda_handler (event, context):
-        xml_data = ET.fromstring(event["body"])
-        ota_type = xml_data[1][0]
-        ota_type = ota_type.tag.split("}")[1]
-        ota_invalid = 0
-    
-        for key in ota_types.keys():
-            if ota_type != key:
-                ota_invalid += 1
-    
-        if ota_invalid == 6:
-            body = {
-                    "Status": "Failed", 
-                    "Message": "OTA Element error",
-                    "Reason": "Invalid OTA element received: " + ota_type + 
-                    ". Please use any of the following values: " + ", ".join(list(ota_types.keys()))  
-                } 
-            return response_wrapper(body,400)
-    
-        try:
-            my_schema = xmlschema.XMLSchema(ota_types[ota_type])
-            my_schema.validate(xml_data)
-            body = {
-                    "Status": "Success", 
-                    "Message": "XML payload matches with Duetto " + ota_type + " XSD"  
-            }
-            return response_wrapper(body,200)
+    except XMLSchemaValidationError as xmle:
+        body = {
+                "Status": "Failed", 
+                "Message": xmle.message,
+                "Reason": xmle.reason, 
+                "Path": xmle.path   
+        }
+        return response_wrapper(body, 400)
         
-        except XMLSchemaValidationError as xmle:
-            body = {
-                    "Status": "Failed", 
-                    "Message": xmle.message,
-                    "Reason": xmle.reason, 
-                    "Path": xmle.path   
-            }
-            return response_wrapper(body, 400)
-            
-        except Exception as e:
-            body = {
-                    "Message": "Internal Server Error"
-            }
-            return response_wrapper(body, 500)
-            
-            
-    def response_wrapper(body,statusCode):
-        return {
-            "isBase64Encoded": False,
-            "headers": {"Access-Control-Allow-Origin": "*"},
-            "statusCode": statusCode,
-            "body": json.dumps(body)
+    except Exception as e:
+        body = {
+                "Message": "Internal Server Error"
         }
-                            </code>
-                        </div>
+        return response_wrapper(body, 500)
+        
+        
+def response_wrapper(body,statusCode):
+    return {
+        "isBase64Encoded": False,
+        "headers": {"Access-Control-Allow-Origin": "*"},
+        "statusCode": statusCode,
+        "body": json.dumps(body)
+    }
+                        </code>
                     </div>
                 </div>
             </div>

@@ -29,11 +29,20 @@
 /* || INDEX */
 @import './pages/index';
 
+/* || DOCUMENTATION */
+@import './pages/documentation';
+
 /* || FEEDBACK */
 @import './pages/feedback';
 
 /* || MEWS */
 @import './pages/mews';
+
+/* || HOW IT WORKS */
+@import './pages/how-it-works';
+
+/* || Tools */
+@import './pages/tools';
 
 
 /* || THIRD PARTY CSS
@@ -45,13 +54,13 @@
 /* || MEDIA QUERIES
 ========================================================================*/
 /* || DESKTOP - LARGE SCREENS */
-@import './media-queries/desktop-large-screens';
+@import './media-queries/1023-desktop-large-screens';
 
 /* || LAPTOPS - SMALL SCREENS */
-@import './media-queries/laptops-small-screens';
+@import './media-queries/840-laptops-small-screens';
 
 /* || IPADS - TABLETS */
-@import './media-queries/ipads-tablets';
+@import './media-queries/768-ipads-tablets';
 
 /* || MOBILE DEVICES */
-@import './media-queries/mobile-devices';
+@import './media-queries/480-mobile-devices';

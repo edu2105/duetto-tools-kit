@@ -1,0 +1,14 @@
+@media(max-width: 1023px){
+    html{
+        font-size: 14px;
+    };
+    .main{
+        &.index{
+            .sub-section-container{
+                .aside{
+                    max-width: 50%;
+                };
+            };
+        };
+    };
+}

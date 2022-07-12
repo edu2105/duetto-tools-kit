@@ -10,6 +10,12 @@
         };
         h1{
             color: $headerBackgroundColor4;
-        }
+        };
+        .form{
+            align-items: center;
+            label{
+                margin: 1rem;
+            };
+        };
     };
 }

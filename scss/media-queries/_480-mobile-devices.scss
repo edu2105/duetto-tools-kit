@@ -1,13 +1,24 @@
 @media(max-width: 480px){
     .main{
+        &.index{
+            .sub-section-container{
+                .aside{
+                    max-width: 80%
+                };
+            };
+        };
         textarea{
             width: calc(100% - 3rem);
             height: auto;
         };
         .form{
+            align-items: flex-start;
             .subscription{
                 @include flex-column;
                 align-items: flex-start;
+            };
+            input[type="file"]{
+                width: calc(100% - 3rem);
             };
         };
         .sub-section-container.index,
@@ -16,6 +27,16 @@
             @include flex-column;
         };
         .sub-section-container{
+            &.tools{
+                .card{
+                    width: 100%;
+                };
+            };
+            &.documentation{
+                margin-left: 0;
+                margin-right: 0;
+                width: 80%;
+            };
             .aside{
                 max-width: 80%;
                 text-align: start;

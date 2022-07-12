@@ -1,0 +1,30 @@
+.main{
+    .sub-section-container{
+        .list-group{
+            --bs-list-group-action-hover-color: white;
+            --bs-list-group-action-hover-bg: #44ADE2;
+            width: fit-content;
+            margin-top: 1.5rem;
+            i{  
+                width: 1.2rem;
+                max-height: 1rem;
+                margin-right: 1rem;
+            };
+        };
+        h3{
+            margin-top: 1.5rem;
+        };
+        .button{
+            @include button-std;
+        };
+        .collapse{
+            width: calc(100% - 3rem);
+            .card{
+                max-width: unset;
+                &.card-body{
+                    margin-right: 0;
+                };
+            };
+        };
+    };
+};

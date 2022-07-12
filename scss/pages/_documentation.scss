@@ -1,0 +1,17 @@
+.main{
+    .sub-section-container{
+        &.documentation{
+            align-self: center;
+            width: 60%;
+            margin: 2rem;
+        };
+        .accordion{
+            margin-right: 0;
+            --bs-accordion-border-color: white;
+            --bs-accordion-btn-bg: #44ADE2;
+            --bs-accordion-btn-color: white;
+            --bs-accordion-active-color: white;
+            --bs-accordion-active-bg: #0C395A;
+        };
+    };
+}

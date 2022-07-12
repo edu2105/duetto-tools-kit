@@ -36,11 +36,29 @@
         };
     }
     .sub-section-container{
+        align-items: center;
         &.index{
             margin: 1.2rem 1.2rem 1.2rem 1.2rem;
             @include flex-row;
             justify-content: center;
-        }
+            .section{
+                h2{
+                    margin-bottom: 0;
+                    height: 3rem;
+                }
+            };
+            .aside{
+                max-width: 40%;
+                .placeholder{
+                    width: 100%;
+                    height: 3rem;
+                    color: transparent;
+                };
+                p{
+                    margin-bottom: 0;
+                };
+            };
+        };
     }
 }
 

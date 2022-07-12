@@ -3,6 +3,7 @@
     background-image: linear-gradient(to left,$footerBackgroundColor1 0%, $footerBackgroundColor2 74%);
     width: 100%;
     grid-area: footer;
+    min-height: 4rem;
     .footer-nav-bar{
         height: 100%;
         ul{
@@ -15,7 +16,7 @@
         };
         li{
             list-style: none;
-            -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+            -webkit-box-reflect: below -3px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
             a{
                 text-decoration: none;
                 font-size: $footerFontSize;
