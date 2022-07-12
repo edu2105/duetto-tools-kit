@@ -50,8 +50,7 @@ form.addEventListener("submit", function(e){
 
     var date_start = new Date(start_utc);
     var date_end = new Date(end_utc);
-    console.log("Start UTC: " + date_start);
-    console.log("End UTC: " + date_end);
+    process_finished = false;
 
     if(date_start >= date_end){
         return alert("End Date can not be greater or equal than Start Date");
