@@ -3,6 +3,7 @@
         .dropdown-menu{
             background-color: $headerBackgroundColor3;
             color: white;
+            z-index: 0;
             li{
                 margin-left: 0;
                 margin-right: 0;
