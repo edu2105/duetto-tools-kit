@@ -169,7 +169,10 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around; }
+    position: sticky;
+    top: 0;
+    justify-content: space-around;
+    z-index: -1; }
   .main .main-section-container {
     margin: 2.5rem 1.2rem 0 1.2rem; }
   .main .sub-section-container {
@@ -250,7 +253,10 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; }
+    justify-content: space-evenly;
+    position: sticky;
+    top: 0;
+    z-index: 0; }
     .main .tools-section .cards-title {
       text-align: center; }
       .main .tools-section .cards-title h2 {
@@ -356,29 +362,33 @@ body {
           text-align: center;
           color: black;
           font-weight: bold; }
-  .main .video-container .video-content {
-    position: relative;
-    bottom: 90%;
-    margin-left: 2rem;
-    max-width: 40%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; }
-    .main .video-container .video-content .video-content-detail {
-      margin-left: 2rem; }
-      .main .video-container .video-content .video-content-detail h2 {
-        margin: 3rem 0 0 2rem; }
-      .main .video-container .video-content .video-content-detail li {
-        list-style: none;
-        color: white;
-        font-size: 1.2rem;
-        padding: .3rem; }
-      .main .video-container .video-content .video-content-detail .goals i {
-        color: green;
-        margin-right: .3rem; }
-      .main .video-container .video-content .video-content-detail p {
-        margin-left: 2.8rem; }
+  .main .video-container {
+    position: sticky;
+    top: 0;
+    z-index: 1; }
+    .main .video-container .video-content {
+      position: relative;
+      bottom: 90%;
+      margin-left: 2rem;
+      max-width: 40%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+      .main .video-container .video-content .video-content-detail {
+        margin-left: 2rem; }
+        .main .video-container .video-content .video-content-detail h2 {
+          margin: 3rem 0 0 2rem; }
+        .main .video-container .video-content .video-content-detail li {
+          list-style: none;
+          color: white;
+          font-size: 1.2rem;
+          padding: .3rem; }
+        .main .video-container .video-content .video-content-detail .goals i {
+          color: green;
+          margin-right: .3rem; }
+        .main .video-container .video-content .video-content-detail p {
+          margin-left: 2.8rem; }
   .main .form {
     margin: 0 0 0 1.2rem;
     display: flex;
@@ -533,7 +543,8 @@ body {
   background-image: linear-gradient(to left, #045de9 0%, #09c6f9 74%);
   width: 100%;
   grid-area: footer;
-  min-height: 4rem; }
+  min-height: 4rem;
+  z-index: 1; }
   .footer .footer-nav-bar {
     height: 100%; }
     .footer .footer-nav-bar ul {
@@ -927,12 +938,18 @@ body {
     max-width: 80%;
     text-align: start;
     align-self: center; }
-  .main .tools-section .cards-container {
-    flex-direction: column;
-    align-items: center; }
-    .main .tools-section .cards-container .card-custom,
-    .main .tools-section .cards-container .card-custom.coming-soon {
-      max-width: 80%;
-      margin: 1rem 0 1rem 0; }
-  .main .video-container .video-content {
-    max-width: 75%; } }
+  .main .start-section {
+    position: unset; }
+  .main .tools-section {
+    position: unset; }
+    .main .tools-section .cards-container {
+      flex-direction: column;
+      align-items: center; }
+      .main .tools-section .cards-container .card-custom,
+      .main .tools-section .cards-container .card-custom.coming-soon {
+        max-width: 80%;
+        margin: 1rem 0 1rem 0; }
+  .main .video-container {
+    position: unset; }
+    .main .video-container .video-content {
+      max-width: 75%; } }

@@ -43,7 +43,11 @@
                 align-self: center;
             };
         };
+        .start-section{
+            position: unset;
+        };
         .tools-section{
+            position: unset;
             .cards-container{
                 flex-direction: column;
                 align-items: center;
@@ -55,6 +59,7 @@
             };
         };
         .video-container{
+            position: unset;
             .video-content{
                 max-width: 75%;
             }

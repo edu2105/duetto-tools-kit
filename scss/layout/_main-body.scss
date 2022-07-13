@@ -31,7 +31,10 @@
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://app-demo.duettoresearch.com/assets/insecure/img/loginNewYorkCityUSA1.jpg?v=7864668");
         @include parallax(true);
         @include flex-column;
+        position: sticky;
+        top: 0;
         justify-content: space-around;
+        z-index: -1;
     };
     .main-section-container{
         margin: 2.5rem 1.2rem 0 1.2rem;
@@ -129,6 +132,9 @@
         @include parallax(true);
         @include flex-column;
         justify-content: space-evenly;
+        position: sticky;
+        top: 0;
+        z-index: 0;
         .cards-title{
             text-align: center;
             h2{
@@ -269,6 +275,9 @@
         }
     };
     .video-container{
+        position: sticky;
+        top: 0;
+        z-index: 1;
         .video-content{
             position: relative;
             bottom: 90%;
