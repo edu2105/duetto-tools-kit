@@ -5,6 +5,7 @@
     @include flex-row;
     justify-content: space-between;
     align-items: center;
+    z-index: 3;
     .mobile-placeholder{
         display: none;
     };

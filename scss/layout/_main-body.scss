@@ -34,7 +34,7 @@
         position: sticky;
         top: 0;
         justify-content: space-around;
-        z-index: -3;
+        z-index: 0;
     };
     .main-section-container{
         margin: 2.5rem 1.2rem 0 1.2rem;
@@ -134,7 +134,7 @@
         justify-content: space-evenly;
         position: sticky;
         top: 0;
-        z-index: -2;
+        z-index: 1;
         .cards-title{
             text-align: center;
             h2{
@@ -277,7 +277,7 @@
     .video-container{
         position: sticky;
         top: 0;
-        z-index: -1;
+        z-index: 2;
         .video-content{
             position: relative;
             bottom: 90%;
