@@ -30,6 +30,27 @@
             justify-content: space-around;
             flex-wrap: wrap;
         };
+        .nav-item.dropdown{
+            &::after{
+                content: "";
+                display: block;
+                height: 3px;
+                width: 0;
+                background: transparent;
+                transition: transform 0.5s;
+                transform: scaleX(0);
+                transform-origin: center;
+            };
+            &:hover{
+                color: $headerBackgroundColor1;
+                transition: 0.4s ;
+                &::after{
+                    width: 100%;
+                    transform: scaleX(1);
+                    background: $highlightColor;
+                };
+            };
+        };
         li{
             display: inline-block;
             margin: 0 1rem 0 1rem;

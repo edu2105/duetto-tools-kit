@@ -72,6 +72,22 @@ body {
     align-items: flex-start;
     justify-content: space-around;
     flex-wrap: wrap; }
+  .header .header-nav-bar .nav-item.dropdown::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 0;
+    background: transparent;
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: center; }
+  .header .header-nav-bar .nav-item.dropdown:hover {
+    color: #0C395A;
+    transition: 0.4s; }
+    .header .header-nav-bar .nav-item.dropdown:hover::after {
+      width: 100%;
+      transform: scaleX(1);
+      background: aqua; }
   .header .header-nav-bar li {
     display: inline-block;
     margin: 0 1rem 0 1rem; }
