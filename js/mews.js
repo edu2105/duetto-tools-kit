@@ -1,27 +1,27 @@
-var form = document.getElementById("mews-form");
-var logs_textarea = document.getElementById("mews-logs-content");
-var refresh_logs = document.getElementById("refresh-logs-btn");
-var seession_id_input = document.getElementById("mews-log-id");
-var get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround-reservations?";
-var get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
-var session_id = "";
-var process_finished = false;
-var refresh_content_delayms = 50
+let form = document.getElementById("mews-form");
+let logs_textarea = document.getElementById("mews-logs-content");
+let refresh_logs = document.getElementById("refresh-logs-btn");
+let seession_id_input = document.getElementById("mews-log-id");
+let get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround-reservations?";
+let get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
+let session_id = "";
+let process_finished = false;
+let refresh_content_delayms = 50
 
 
 function checkProcessFinished(){
     if(process_finished == false) {
-        window.setTimeout(checkProcessFinished, 5000);
+        window.setTimeout(checkProcessFinished, 3000);
         if(session_id)
             getLogs(session_id);
     }else{
-        alert("Process for session Id <" + session_id + "> finished");
+        alert(`Process for session Id <${session_id}> finished`);
     }
 };
 
 
 function getLogs(sessionId){
-    var request_options = {
+    let request_options = {
         method: "GET"
     };
 
@@ -42,21 +42,21 @@ function getLogs(sessionId){
 form.addEventListener("submit", function(e){
     e.preventDefault();
     
-    var start_utc = document.getElementById("mews-start-utc").value;
-    var end_utc = document.getElementById("mews-end-utc").value;
-    var interval = document.getElementById("mews-interval").value;
-    var access_token = document.getElementById("mews-access-token").value;
-    var service_id = document.getElementById("mews-service-id").value;
+    let start_utc = document.getElementById("mews-start-utc").value;
+    let end_utc = document.getElementById("mews-end-utc").value;
+    let interval = document.getElementById("mews-interval").value;
+    let access_token = document.getElementById("mews-access-token").value;
+    let service_id = document.getElementById("mews-service-id").value;
 
-    var date_start = new Date(start_utc);
-    var date_end = new Date(end_utc);
+    let date_start = new Date(start_utc);
+    let date_end = new Date(end_utc);
     process_finished = false;
 
     if(date_start >= date_end){
-        return alert("End Date can not be greater or equal than Start Date");
+        return alert("Start Date can not be greater or equal than End Date");
     };
 
-    var request_options = {
+    let request_options = {
         method: "GET"
     };
 
@@ -70,9 +70,9 @@ form.addEventListener("submit", function(e){
     .then( response => response.text() )
     .then( response => {
         alert(response);
-        var session_id_array = response.match('(?<=\<).*(?=\>)');
+        let session_id_array = response.match('(?<=\<).*(?=\>)');
         session_id = session_id_array.at(0);
-        seession_id_input.value = session_id
+        seession_id_input.value = session_id;
         getLogs(session_id);
     });
 });
