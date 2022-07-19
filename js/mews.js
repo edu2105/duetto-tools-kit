@@ -7,7 +7,10 @@ let get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround-re
 let get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
 let session_id = "";
 let process_finished = false;
-let refresh_content_delayms = 50
+let refresh_content_delayms = 50;
+const INVALID_DATES = 1;
+const INVALID_INTERVAL = 2;
+const SUCCESS = 0;
 
 function reset(){
     session_id_input.value = "";
@@ -35,6 +38,19 @@ function checkProcessFinished(){
     }
 };
 
+function dateValidation(startDate, endDate, minutesInterval){
+    startDateMs = startDate.getTime();
+    endDateMs = endDate.getTime();
+    minutesIntervalMs = minutesInterval * 60 * 1000;
+    numberOfRequest = (endDateMs - startDateMs) / minutesIntervalMs;
+    if(startDate >= endDate){
+        return INVALID_DATES;
+    }else if(numberOfRequest>0 && numberOfRequest<1){
+        return INVALID_INTERVAL;
+    }else{
+        return SUCCESS;
+    }
+};
 
 function getLogs(sessionId){
     let request_options = {
@@ -83,9 +99,9 @@ form.addEventListener("submit", function(e){
 
     let date_start = new Date(start_utc);
     let date_end = new Date(end_utc);
-    process_finished = false;
+    let validation = dateValidation(date_start, date_end, interval);
 
-    if(date_start >= date_end){
+    if(validation == INVALID_DATES){
         return ( 
             Swal.fire({
                 icon: 'error',
@@ -94,6 +110,17 @@ form.addEventListener("submit", function(e){
                 '<b>Start Date</b> ' +
                 'can not be greater or equal than ' +
                 '<b>End Date</b>',
+                confirmButtonText: "Close"
+            })
+        );
+    }else if(validation == INVALID_INTERVAL){
+        return ( 
+            Swal.fire({
+                icon: 'error',
+                title: 'Input Error',
+                html:
+                '<b>Interval time</b> ' +
+                'can not be greater than the date range difference.',
                 confirmButtonText: "Close"
             })
         );
