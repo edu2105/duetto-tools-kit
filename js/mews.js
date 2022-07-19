@@ -85,6 +85,8 @@ form.addEventListener("submit", function(e){
     }), request_options)
     .then( response => response.text() )
     .then( response => {
+        let session_id_array = response.match('(?<=\<).*(?=\>)');
+        session_id = session_id_array.at(0);
         Swal.fire({
             icon: "info",
             title: "Start",
@@ -96,8 +98,6 @@ form.addEventListener("submit", function(e){
             confirmButtonText: "Close"
             }
         );
-        let session_id_array = response.match('(?<=\<).*(?=\>)');
-        session_id = session_id_array.at(0);
         seession_id_input.value = session_id;
         getLogs(session_id);
     });
