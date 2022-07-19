@@ -8,14 +8,20 @@ let session_id = "";
 let process_finished = false;
 let refresh_content_delayms = 50
 
-
 function checkProcessFinished(){
     if(process_finished == false) {
         window.setTimeout(checkProcessFinished, 3000);
         if(session_id)
             getLogs(session_id);
     }else{
-        alert(`Process for session Id <${session_id}> finished`);
+        Swal.fire({
+            icon: "success",
+            title: "Finish",
+            html: "Process for session id <b><"+
+            session_id +
+            "></b> finished.",
+            confirmButtonText: "Close"
+        })
     }
 };
 
@@ -53,7 +59,17 @@ form.addEventListener("submit", function(e){
     process_finished = false;
 
     if(date_start >= date_end){
-        return alert("Start Date can not be greater or equal than End Date");
+        return ( 
+            Swal.fire({
+                icon: 'error',
+                title: 'Input Error',
+                html:
+                '<b>Start Date</b> ' +
+                'can not be greater or equal than ' +
+                '<b>End Date</b>',
+                confirmButtonText: "Close"
+            })
+        );
     };
 
     let request_options = {
@@ -69,7 +85,17 @@ form.addEventListener("submit", function(e){
     }), request_options)
     .then( response => response.text() )
     .then( response => {
-        alert(response);
+        Swal.fire({
+            icon: "info",
+            title: "Start",
+            html: "" +
+            response + 
+            "</br>"+
+            "</br>"+
+            "<p><i>You don't need to copy the session id, will still be available in the Logs section.</i></p>",
+            confirmButtonText: "Close"
+            }
+        );
         let session_id_array = response.match('(?<=\<).*(?=\>)');
         session_id = session_id_array.at(0);
         seession_id_input.value = session_id;

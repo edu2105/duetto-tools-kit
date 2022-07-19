@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "nodemon": "^2.0.18",
-    "node-sass": "^7.0.1"
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.19",
+    "sweetalert2": "^11.4.23"
   },
   "devDependencies": {},
   "scripts": {
