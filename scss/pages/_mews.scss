@@ -22,9 +22,6 @@
                 box-shadow: .3rem 0 .5rem .2rem;
             };
         };
-        button{
-            @include button-std;
-        }
     };
     .workaround-logs{
         .logs-container{
@@ -42,6 +39,25 @@
                 resize: both;
                 color: black;
                 width: calc(100% - 3rem);
+            };
+            .logs-buttons{
+                .button{
+                    @include button-std;
+                    margin-right: 2rem;
+                };
+                .btn-disabled{
+                    box-shadow: unset;
+                    background-color: rgba($color: grey, $alpha: .4);
+                    border-color: grey;
+                    color: black;
+                    &:hover{
+                        transform: unset;
+                        box-shadow: unset;
+                        color: black;
+                        background-color: rgba($color: grey, $alpha: .4);
+                        cursor: not-allowed;
+                    };
+                };
             };
         };
     };

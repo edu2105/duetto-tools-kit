@@ -1,12 +1,22 @@
 let form = document.getElementById("mews-form");
 let logs_textarea = document.getElementById("mews-logs-content");
 let refresh_logs = document.getElementById("refresh-logs-btn");
-let seession_id_input = document.getElementById("mews-log-id");
+let session_id_input = document.getElementById("mews-log-id");
+let download_logs = document.getElementById("download-logs-btn");
 let get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround-reservations?";
 let get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
 let session_id = "";
 let process_finished = false;
 let refresh_content_delayms = 50
+
+function reset(){
+    session_id_input.value = "";
+    logs_textarea.value = "";
+    session_id = "";
+    process_finished = false;
+    download_logs.disabled = true;
+    download_logs.classList.add('btn-disabled');
+};
 
 function checkProcessFinished(){
     if(process_finished == false) {
@@ -36,8 +46,11 @@ function getLogs(sessionId){
     }), request_options)
     .then( response => response.text() )
     .then( response => {
-        if(response.match('Process Finished') == "Process Finished")
+        if(response.match('Process Finished') == "Process Finished"){
             process_finished = true;
+            download_logs.disabled = false;
+            download_logs.classList.remove('btn-disabled');
+        }
         logs_textarea.value = "";
         setTimeout(function() {
             logs_textarea.value = response;
@@ -45,8 +58,22 @@ function getLogs(sessionId){
     });
 };
 
+function download(filename, text) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
 form.addEventListener("submit", function(e){
     e.preventDefault();
+    reset();
     
     let start_utc = document.getElementById("mews-start-utc").value;
     let end_utc = document.getElementById("mews-end-utc").value;
@@ -87,27 +114,32 @@ form.addEventListener("submit", function(e){
     .then( response => {
         let session_id_array = response.match('(?<=\<).*(?=\>)');
         session_id = session_id_array.at(0);
+        session_id_input.value = session_id;
         Swal.fire({
             icon: "info",
             title: "Start",
-            html: "" +
-            response + 
+            html: "Process started with session id <b><" +
+            session_id + 
+            "></b>"+
             "</br>"+
             "</br>"+
             "<p><i>You don't need to copy the session id, will still be available in the Logs section.</i></p>",
             confirmButtonText: "Close"
             }
         );
-        seession_id_input.value = session_id;
         getLogs(session_id);
+        checkProcessFinished();
     });
 });
 
 refresh_logs.addEventListener("click", function(e){
     e.preventDefault();
     
-    session_id = seession_id_input.value;
+    session_id = session_id_input.value;
     getLogs(session_id);
 });
 
-checkProcessFinished();
+download_logs.addEventListener("click", function(e){
+    e.preventDefault();
+    download(session_id + ".txt", logs_textarea.value);
+})

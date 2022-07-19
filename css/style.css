@@ -706,30 +706,6 @@ body {
   .main .workaround-logs input[type="submit"]:hover {
     box-shadow: .3rem 0 .5rem .2rem; }
 
-.main .workaround-form button,
-.main .workaround-logs button {
-  margin: 1rem 0 1rem 0;
-  transition-duration: all 0.4s linear;
-  background-color: white;
-  color: #44ADE2;
-  border: 2px solid;
-  border-color: #0257A3;
-  box-shadow: -0.2rem 0.2rem 0.3rem 0.1rem #44ADE2;
-  height: 2.5rem;
-  width: fit-content;
-  padding: .3rem .6rem;
-  border-radius: .5rem;
-  box-sizing: border-box;
-  font-weight: 600; }
-  .main .workaround-form button:hover,
-  .main .workaround-logs button:hover {
-    box-shadow: .3rem 0 .5rem .2rem;
-    background-color: #0C395A;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0px .6rem 1.2rem;
-    transform: translateY(-2px); }
-
 .main .workaround-logs .logs-container {
   display: flex;
   flex-direction: column;
@@ -744,6 +720,39 @@ body {
     resize: both;
     color: black;
     width: calc(100% - 3rem); }
+  .main .workaround-logs .logs-container .logs-buttons .button {
+    margin: 1rem 0 1rem 0;
+    transition-duration: all 0.4s linear;
+    background-color: white;
+    color: #44ADE2;
+    border: 2px solid;
+    border-color: #0257A3;
+    box-shadow: -0.2rem 0.2rem 0.3rem 0.1rem #44ADE2;
+    height: 2.5rem;
+    width: fit-content;
+    padding: .3rem .6rem;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    font-weight: 600;
+    margin-right: 2rem; }
+    .main .workaround-logs .logs-container .logs-buttons .button:hover {
+      box-shadow: .3rem 0 .5rem .2rem;
+      background-color: #0C395A;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0px .6rem 1.2rem;
+      transform: translateY(-2px); }
+  .main .workaround-logs .logs-container .logs-buttons .btn-disabled {
+    box-shadow: unset;
+    background-color: rgba(128, 128, 128, 0.4);
+    border-color: grey;
+    color: black; }
+    .main .workaround-logs .logs-container .logs-buttons .btn-disabled:hover {
+      transform: unset;
+      box-shadow: unset;
+      color: black;
+      background-color: rgba(128, 128, 128, 0.4);
+      cursor: not-allowed; }
 
 /* || HOW IT WORKS */
 .main .sub-section-container .list-group {
