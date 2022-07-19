@@ -6,27 +6,30 @@ let download_logs = document.getElementById("download-logs-btn");
 let get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround-reservations?";
 let get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
 let session_id = "";
-let process_finished = false;
+let process_finished = new Number();
 let refresh_content_delayms = 50;
 const INVALID_DATES = 1;
 const INVALID_INTERVAL = 2;
 const SUCCESS = 0;
+const PROCESS_ONGOING = 10;
+const PROCESS_FINISHED_SUCCESS = 20;
+const PROCESS_FINISHED_FAILED = 30;
 
 function reset(){
     session_id_input.value = "";
     logs_textarea.value = "";
     session_id = "";
-    process_finished = false;
+    process_finished = PROCESS_ONGOING;
     download_logs.disabled = true;
     download_logs.classList.add('btn-disabled');
 };
 
 function checkProcessFinished(){
-    if(process_finished == false) {
+    if(process_finished == PROCESS_ONGOING) {
         window.setTimeout(checkProcessFinished, 3000);
         if(session_id)
             getLogs(session_id);
-    }else{
+    }else if(process_finished == PROCESS_FINISHED_SUCCESS){
         Swal.fire({
             icon: "success",
             title: "Finish",
@@ -35,7 +38,16 @@ function checkProcessFinished(){
             "></b> finished.",
             confirmButtonText: "Close"
         })
-    }
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Finish",
+            html: "Process for session id <b><"+
+            session_id +
+            "></b> failed.",
+            confirmButtonText: "Close"
+        })
+    };
 };
 
 function dateValidation(startDate, endDate, minutesInterval){
@@ -63,7 +75,7 @@ function getLogs(sessionId){
     .then( response => response.text() )
     .then( response => {
         if(response.match('Process Finished') == "Process Finished"){
-            process_finished = true;
+            process_finished = PROCESS_FINISHED_SUCCESS;
             download_logs.disabled = false;
             download_logs.classList.remove('btn-disabled');
         }
