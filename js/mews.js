@@ -1,11 +1,14 @@
 let form = document.getElementById("mews-form");
 let logs_textarea = document.getElementById("mews-logs-content");
 let refresh_logs = document.getElementById("refresh-logs-btn");
-let session_id_input = document.getElementById("mews-log-id");
+let id_input = document.getElementById("mews-log-id");
 let download_logs = document.getElementById("download-logs-btn");
-let get_reservations = "https://enifi.stage.duettosystems.com/mews-workaround-reservations?";
-let get_logs = "https://enifi.stage.duettosystems.com/mews-workaround-logs?";
+let log_label = document.getElementById("selected-log-label");
+let radio_logs_type = document.getElementsByName("logs-type-radio");
+let get_reservations = "http://localhost:8081/mews-workaround-reservations?";
+let get_logs = "http://localhost:8081/mews-workaround-logs?";
 let session_id = "";
+let access_token_logs = "";
 let process_finished = new Number();
 let refresh_content_delayms = 50;
 const INVALID_DATES = 1;
@@ -14,21 +17,41 @@ const SUCCESS = 0;
 const PROCESS_ONGOING = 10;
 const PROCESS_FINISHED_SUCCESS = 20;
 const PROCESS_FINISHED_FAILED = 30;
+const BY_SESSIONID = "Session Id";
+const BY_ACCESSTOKEN = "Access Token";
+const RADIO_RESERVATION = 0;
+const RADIO_RESPONSE = 1;
+const LOG_RESERVATION = "GetReservations";
+const LOG_RESPONSE = "GetResponses";
 
 function reset(){
-    session_id_input.value = "";
+    id_input.value = "";
     logs_textarea.value = "";
     session_id = "";
     process_finished = PROCESS_ONGOING;
     download_logs.disabled = true;
     download_logs.classList.add('btn-disabled');
+    log_label.value = BY_SESSIONID;
+    radio_logs_type[RADIO_RESERVATION].checked = true;
+    radio_logs_type[RADIO_RESPONSE].checked = false;
+    for(radio in radio_logs_type){
+        radio_logs_type[radio].onclick = function(){
+            if(this.value == "log-reservation"){
+                log_label.innerHTML = BY_SESSIONID;
+                id_input.value = session_id;
+            }else if(this.value == "log-response"){
+                log_label.innerHTML = BY_ACCESSTOKEN;
+                id_input.value = access_token_logs;
+            };
+        };
+    };
 };
 
 function checkProcessFinished(){
     if(process_finished == PROCESS_ONGOING) {
         window.setTimeout(checkProcessFinished, 3000);
         if(session_id)
-            getLogs(session_id);
+            getLogs(session_id, LOG_RESERVATION);
     }else if(process_finished == PROCESS_FINISHED_SUCCESS){
         Swal.fire({
             icon: "success",
@@ -64,18 +87,25 @@ function dateValidation(startDate, endDate, minutesInterval){
     }
 };
 
-function getLogs(sessionId){
+function getLogs(id, radio){
     let request_options = {
         method: "GET"
     };
 
     fetch(get_logs + new URLSearchParams({
-        sessionId: sessionId
+        id: id,
+        type: radio
     }), request_options)
     .then( response => response.text() )
     .then( response => {
-        if(response.match('Process Finished') == "Process Finished"){
-            process_finished = PROCESS_FINISHED_SUCCESS;
+        let regex = '\\[FINISH]';
+        let result = response.match(regex);
+        if(result == "[FINISH]"){
+            if(response.match('- ERROR -') == "- ERROR -"){
+                process_finished = PROCESS_FINISHED_FAILED;
+            }else{
+                process_finished = PROCESS_FINISHED_SUCCESS;
+            }
             download_logs.disabled = false;
             download_logs.classList.remove('btn-disabled');
         }
@@ -153,7 +183,7 @@ form.addEventListener("submit", function(e){
     .then( response => {
         let session_id_array = response.match('(?<=\<).*(?=\>)');
         session_id = session_id_array.at(0);
-        session_id_input.value = session_id;
+        id_input.value = session_id;
         Swal.fire({
             icon: "info",
             title: "Start",
@@ -166,19 +196,25 @@ form.addEventListener("submit", function(e){
             confirmButtonText: "Close"
             }
         );
-        getLogs(session_id);
+        getLogs(session_id, LOG_RESERVATION);
         checkProcessFinished();
     });
 });
 
 refresh_logs.addEventListener("click", function(e){
     e.preventDefault();
-    
-    session_id = session_id_input.value;
-    getLogs(session_id);
+    if(radio_logs_type[RADIO_RESERVATION].checked){
+        session_id = id_input.value;
+        getLogs(session_id, LOG_RESERVATION);
+    }else if(radio_logs_type[RADIO_RESPONSE].checked){
+        access_token_logs = id_input.value;
+        getLogs(access_token_logs, LOG_RESPONSE);
+    };
 });
 
 download_logs.addEventListener("click", function(e){
     e.preventDefault();
     download(session_id + ".txt", logs_textarea.value);
-})
+});
+
+reset();

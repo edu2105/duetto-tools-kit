@@ -4,6 +4,7 @@
         justify-content: space-around;
         align-items: center;
         position: relative;
+        width: 100%;
     };
     .workaround-form,
     .workaround-logs{
@@ -24,9 +25,46 @@
         };
     };
     .workaround-logs{
+        width: 60%;
         .logs-container{
             @include flex-column;
-            margin-left: 4rem;
+            .logs-label{
+                @include flex-row;
+                align-items: center;
+                justify-content: space-between;
+                .radio-logs{
+                    @include flex-column;
+                    margin-right: 1rem;
+                    width: 30%;
+                    input{
+                        height: 1.5rem;
+                        width: 15%;
+                    };
+                    label{
+                        margin-top: 0;
+                        width: 85%;
+                    };
+                    .radio-reservations,
+                    .radio-responses{
+                        @include flex-row;
+                        align-items: center;
+                        justify-content: space-around;
+                    };
+                };
+                .selected-logs{
+                    @include flex-row;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    width: 70%;
+                    label{
+                        margin-right: 1rem;
+                    };
+                    input{
+                        width: 100%;
+                        margin-left: 0;
+                    };
+                };
+            };
             .logs-title{
                 align-self: center;
                 margin-top: 0;
@@ -35,10 +73,10 @@
             .session-id-input{
                 margin-left: 1rem;
             };
-            textarea{
+            .textarea{
                 resize: both;
                 color: black;
-                width: calc(100% - 3rem);
+                width: 100%;
             };
             .logs-buttons{
                 .button{

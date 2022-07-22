@@ -23,9 +23,20 @@
                 @include flex-column;
                 .workaround-logs{
                     margin-top: 3rem;
+                    width: 90%;
                     .logs-container{
                         margin-left: 0;
                         align-items: center;
+                        .logs-label{
+                            width: 100%;
+                            flex-wrap: wrap;
+                            .radio-logs{
+                                width: 100%;
+                            };
+                            .selected-logs{
+                                width: 100%;
+                            };
+                        }
                     };
                 };
             };

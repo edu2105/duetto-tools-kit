@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- Custom Style -->
     <link rel="stylesheet" href="../css/style.css">
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.23/dist/sweetalert2.all.min.js"></script>
     <!-- Fontawesome -->
@@ -100,11 +102,23 @@
                     <div class="workaround-logs">
                         <div class="logs-container">
                             <label for="mews-log-content" class="logs-title">Logs</label>
-                            <div class="logs-label">
-                                <label for="mews-log-id"><mark>Session Id</mark></label>
-                                <input type="text" name="log-id" id="mews-log-id" class="session-id-input">
+                            <div class="logs-label">    
+                                <div class="radio-logs">
+                                    <div class="radio-reservations">
+                                        <input type="radio" name="logs-type-radio" id="mews-reservations-radio" value="log-reservation" checked>
+                                        <label for="mews-reservations-radio">Reservation logs</label>
+                                    </div>
+                                    <div class="radio-responses">
+                                        <input type="radio" name="logs-type-radio" id="mews-responses-radio" value="log-response">
+                                        <label for="mews-responses-radio">Response logs</label>
+                                    </div>
+                                </div>
+                                <div class="selected-logs">
+                                    <label for="mews-log-id"><mark id="selected-log-label">Session Id</mark></label>
+                                    <input type="text" name="log-id" id="mews-log-id" class="session-id-input">
+                                </div>
                             </div>
-                            <textarea name="logs-content" id="mews-logs-content" cols="120" rows="10" readonly></textarea>
+                            <textarea class="textarea" name="logs-content" id="mews-logs-content" rows="10" readonly></textarea>
                             <div class="logs-buttons">
                                 <button id="refresh-logs-btn" class="button">Refresh</button>
                                 <button id="download-logs-btn" class="button btn-disabled" disabled>Download</button>
